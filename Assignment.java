@@ -1,0 +1,55 @@
+package package1;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Assignment {
+	
+	WebDriver driver;
+
+	@Before
+	public void setupMethod() {
+		 System.setProperty("webdriver.chrome.driver","C:\\jar files\\chromedriver\\chromedriver.exe");
+		 driver = new ChromeDriver();
+		 driver.manage().window().maximize();
+	}
+		
+//	@Test 
+//	public void scenario2() {
+//		
+//		driver.get("https://www.traderev.com/en-ca/");
+//		driver.findElement(By.linkText("Careers")).click();
+//		ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+//		driver.switchTo().window(tabs.get(1));
+//		driver.findElement(By.linkText("Canadian Opportunities")).click();
+//	}
+//	
+//	@Test
+//	public void scenario3() {
+//		driver.get("https://jobs.lever.co/traderev");
+//		Select s = new Select(driver.findElement(By.xpath("//div[contains(text(),'Location')]")));
+//		s.selectByVisibleText("Toronto, Ontario, Canada");
+//	}
+	
+	@Test 
+	public void scenario4() throws Throwable {
+		driver.get("https://jobs.lever.co/traderev");
+		driver.findElement(By.xpath("//div[contains(text(),'Team')]")).click();
+		//Select sai = new Select(driver.findElement(By.xpath("//div[contains(text(),'Team')]")));
+		//sai.selectByVisibleText("Engineering");
+		WebElement engineering = driver.findElement(By.xpath("//a[contains(text(),'Engineering')]"));
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.elementToBeClickable(engineering));
+		engineering.click();
+		Thread.sleep(1000);
+	}
+	
+;
+}

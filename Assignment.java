@@ -1,7 +1,9 @@
 package package1;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -9,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Assignment {
@@ -23,21 +24,19 @@ public class Assignment {
 		 driver.manage().window().maximize();
 	}
 		
-//	@Test 
-//	public void scenario2() {
-//		
-//		driver.get("https://www.traderev.com/en-ca/");
-//		driver.findElement(By.linkText("Careers")).click();
-//		ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-//		driver.switchTo().window(tabs.get(1));
-//		driver.findElement(By.linkText("Canadian Opportunities")).click();
-//	}
-//	
+	@Test 
+	public void scenario2() {
+		
+		driver.get("https://www.traderev.com/en-ca/");
+		driver.findElement(By.linkText("Careers")).click();
+		ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		driver.findElement(By.linkText("Canadian Opportunities")).click();
+	}
+	
 	@Test
 	public void scenario3() {
 		driver.get("https://jobs.lever.co/traderev");
-//		Select s = new Select(driver.findElement(By.xpath("//div[contains(text(),'Location')]")));
-//		s.selectByVisibleText("Toronto, Ontario, Canada");
 	    driver.findElement(By.xpath("//div[contains(text(),'Location')]")).click();
 	    WebElement toronto = driver.findElement(By.xpath("//a[contains(text(),'Toronto, Ontario, Canada')]"));
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -54,8 +53,6 @@ public class Assignment {
 		wait.until(ExpectedConditions.elementToBeClickable(toronto));
 		toronto.click();
 		driver.findElement(By.xpath("//div[contains(text(),'Team')]")).click();
-		//Select sai = new Select(driver.findElement(By.xpath("//div[contains(text(),'Team')]")));
-		//sai.selectByVisibleText("Engineering");
 		WebElement engineering = driver.findElement(By.xpath("//a[contains(text(),'Engineering')]"));
 		WebDriverWait Wait = new WebDriverWait(driver,30);
 		Wait.until(ExpectedConditions.elementToBeClickable(engineering));
@@ -65,5 +62,10 @@ public class Assignment {
 		Thread.sleep(1000);
 	}
 	
-;
+	@After
+	public void scenario5(){
+		driver.quit();
+	}
+	
+
 }
